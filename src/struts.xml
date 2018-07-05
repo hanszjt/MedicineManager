@@ -7,7 +7,7 @@
 	<package name="p1" extends="struts-default"> 
 	<!-- 用户登陆 -->
 		<action name="userlogin" class="com.medic.action.UserAction" method="login">
-			<result name="success">/success.jsp</result>
+			<result name="success">/index.html</result>
 			<result name="fail">/login.jsp</result>
 		</action>
 	<!-- 用户注册 -->
