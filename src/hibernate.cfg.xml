@@ -23,6 +23,7 @@
 	<property name="format_sql">true</property>
 	<property name="hbm2ddl.auto">update</property>
 	<mapping resource="com/medic/pojo/User.hbm.xml" />
+	<mapping resource="com/medic/pojo/Employee.hbm.xml" />
 
 
 

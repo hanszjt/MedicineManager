@@ -1,16 +1,18 @@
 package com.medic.action;
 
-import javax.servlet.ServletContext;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.medic.dao.UserDao;
-import com.medic.dao.UserDaoImpl;
+import com.medic.dao.impl.UserDaoImpl;
+import com.medic.page.Pager;
 import com.medic.pojo.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.ModelDriven;
+import com.medic.page.PagerHelper;
 /**
  * 
  * 验证用户名密码是否正确
@@ -38,9 +40,21 @@ public class UserAction extends ActionSupport{
 		System.out.println("登录验证#########");
 		String returnValue = "login";
 		if (validateCode.equalsIgnoreCase(code)) {
-			if (this.userDao.checkUserLogin(this.getUser().getUsername(), this
-					.getUser().getPassword())) {
-				returnValue = "success";
+			User checkUser = this.userDao.checkUserLogin(this.getUser().getUsername(), this.getUser().getPassword());
+			
+			if (checkUser != null) {
+				switch (checkUser.getPermission()) {
+				case 1:
+					returnValue = "supermanager";
+					break;
+				case 0:
+					returnValue = "salemanager";
+					break;
+				case 2:
+					returnValue = "goodsmanager";
+					break;
+				}
+				
 				ActionContext.getContext().getSession()
 						.put("username", this.getUser().getUsername());
 			} else {
@@ -58,7 +72,21 @@ public class UserAction extends ActionSupport{
 		System.out.println("注册验证#########");
 		System.out.println(this.user);
 		this.userDao.addUser(this.user);
-		return "success";
-		
+		return "success";		
+	}
+	
+	//用户分页显示
+	public String listAllUserPager(){
+		long totalRows = 0;
+		Pager pager = null;
+		int pageSize = 10;
+		HttpServletRequest request = ServletActionContext.getRequest();
+		totalRows = userDao.getCountUser();
+		pager = PagerHelper.getPager(request, (int)totalRows, pageSize);
+		pager.setLinkUrl("listAllStudentPage.action"); // 设置跳转路径，也可以是？&
+		request.setAttribute("pb", pager); // 将分页信息保存在Request对象pb中
+		List<User> studentList = userDao.queryAllUser(pager);
+		request.setAttribute("userList", studentList);
+		return SUCCESS;
 	}
 }

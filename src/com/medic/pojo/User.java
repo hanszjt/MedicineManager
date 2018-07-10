@@ -12,6 +12,8 @@ public class User {
 	private Integer permission;
 	
 	
+	
+	
 	public Integer getId() {
 		return id;
 	}
