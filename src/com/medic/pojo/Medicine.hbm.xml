@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+     <hibernate-mapping >
+    	<class name="com.medic.pojo.Medicine" table="medicine">
+    		<id name="id" column="id" type="integer">
+    			<generator class="native"></generator>
+    		</id>
+    		<property name="mname" column="mname"  type="string"/>
+    		
+    		<property name="mformat" column="mformat"  type="string"/>
+    		<property name="maddress" column="maddress" type="string"/>
+    		<property name="mnumber" column="munmber" type="string"/>
+    		<property name="inprice" column="inprice" type="double" />
+    		<property name="saleprice" column="saleprice" type="double"/>
+    		<property name="someprice" column="someprice" type="double"/>
+    		<property name="category" column="category" type="string"/>
+
+    	</class>
+    </hibernate-mapping>

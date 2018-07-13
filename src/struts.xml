@@ -15,9 +15,33 @@
 		<action name="userRegist" class="com.medic.action.UserAction" method="regist">
 			<result name="success">/login.jsp</result>
 		</action>
+		<action name="useradd" class="com.medic.action.UserAction" method="adduser">
+
+		</action>
 	<!-- 用户分页显示 -->
 		<action name="listAllPage" class="com.medic.action.UserAction" method="listAllUserPager">
 			<result name ="success">/user-list.jsp</result>
 		</action>
+	<!-- 用户删除 -->
+		<action name="deleteUser" class="com.medic.action.UserAction" method="delete">
+			<result name="success" type="redirectAction">listAllPage</result>
+		</action>
+		
+	<!-- 用户更改 -->
+		<action name="updateuser" class="com.medic.action.UserAction" method="update" >
+			<result name="success">/success.jsp</result>
+		</action>
+	<!-- 用户查询 -->
+		<action name="findUser" class="com.medic.action.UserAction" method="findUser">
+			<result name="success" type="redirectAction">listAllPage</result>
+		</action>	
+	<!-- 用户权限修改 -->	
+		<action name="userRole" class="com.medic.action.UserAction" method="listAllUserPager">
+			<result name="success" >/user-role.jsp</result>
+		</action>
+		<action name="updateUserPermission" class="com.medic.action.UserAction" method="updateRole">
+			<result name="success">/success.jsp</result>
+		</action>
+		
 	</package>
 </struts>

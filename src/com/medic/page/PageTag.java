@@ -5,21 +5,22 @@ import java.io.IOException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 
+
 public class PageTag extends TagSupport {
-	 private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	 private Pager pager;
 	 @SuppressWarnings("static-access")
 	public int doStartTag() {
 	    try {
 	     JspWriter out = pageContext.getOut();
-	     out.print("�? " + pager.getCurrentPage() + " �?/�? " + (pager.getTotalPages()) + " �?");
+	     out.print("第 " + pager.getCurrentPage() + " 页/共 " + (pager.getTotalPages()) + " 页");
 	     if (pager.getCurrentPage() == 1) {
-	      out.print("[�?首页]");
+	      out.print("[最首页]");
 	      out.print("[上一页]");
 	     }
 	     if (pager.getCurrentPage() != 1) {
-	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=1'>�?首页</a>]");
-	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=" + (pager.getCurrentPage() - 1) + "'>上一�?</a>]");
+	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=1'>最首页</a>]");
+	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=" + (pager.getCurrentPage() - 1) + "'>上一页</a>]");
 	     }
 	     for (int i = pager.getCurrentPage() - 3; i <= pager.getCurrentPage() + 3; i++) {
 	      if (i <= 0 || i > pager.getTotalPages()) {
@@ -33,11 +34,11 @@ public class PageTag extends TagSupport {
 	     }
 	     if (pager.getCurrentPage() == pager.getTotalPages() || pager.getTotalPages() == 0) {
 	      out.print("[下一页]");
-	      out.print("[�?末页]");
+	      out.print("[最末页]");
 	     }
 	     if (pager.getCurrentPage() != pager.getTotalPages() && pager.getTotalPages() != 0) {
-	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=" + (pager.getCurrentPage() + 1) + "'>下一�?</a>]");
-	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=" + (pager.getTotalPages()) + "'>�?末页</a>]");
+	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=" + (pager.getCurrentPage() + 1) + "'>下一页</a>]");
+	      out.print("[<a href='" + pager.getLinkUrl() + "cpage=" + (pager.getTotalPages()) + "'>最末页</a>]");
 	     }
 	     out.flush();
 	    } catch (IOException e) {
@@ -56,3 +57,4 @@ public class PageTag extends TagSupport {
 	  return pager;
 	 }
 	}
+

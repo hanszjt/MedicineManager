@@ -1,5 +1,6 @@
 package com.medic.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.medic.page.PagerHelper;
 /**
  * 
- * 验证用户名密码是否正确
+ * 用户活动
  * @author 苗欣
  *
  */
@@ -84,9 +85,43 @@ public class UserAction extends ActionSupport{
 		totalRows = userDao.getCountUser();
 		pager = PagerHelper.getPager(request, (int)totalRows, pageSize);
 		pager.setLinkUrl("listAllStudentPage.action"); // 设置跳转路径，也可以是？&
+		request.setAttribute("total", totalRows);
 		request.setAttribute("pb", pager); // 将分页信息保存在Request对象pb中
 		List<User> studentList = userDao.queryAllUser(pager);
 		request.setAttribute("userList", studentList);
+		return SUCCESS;
+	}
+	
+	public String delete(){
+		int id = this.user.getId();
+		userDao.deleteUserById(id);
+		return SUCCESS;
+		
+	}
+	
+	public String adduser(){
+		System.out.println(this.user);
+		this.userDao.addUser(this.user);
+		return null;
+	}
+	
+	public String update(){
+		userDao.updateUser(this.getUser(), this.user.getId());
+		return SUCCESS;
+	}
+	
+	public String fingUser(){
+		HttpServletRequest request = ServletActionContext.getRequest();
+		List<User> queryUserByName = userDao.queryUserByName(this.user.getUsername());
+		request.setAttribute("userList", queryUserByName);
+		return SUCCESS;
+	}
+	
+	public String updateRole(){
+		Integer permission = this.user.getPermission();
+		this.user = userDao.queryUserByName(this.user.getUsername()).get(0);
+		user.setPermission(permission);
+		userDao.updateUser(this.user, this.user.getId());
 		return SUCCESS;
 	}
 }

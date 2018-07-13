@@ -30,19 +30,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="x-body">
-      <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start">
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
-          <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
-          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-      </div>
+      
       <xblock>
         <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./admin-add.html')"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','./useradd.jsp')"><i class="layui-icon"></i>添加</button>
+        <span class="x-right" style="line-height:40px">共有数据：<%=request.getAttribute("total") %> 条</span>
       </xblock>
+      
+      
       <table class="layui-table">
         <thead>
           <tr>
@@ -52,12 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <th>用户编号</th>
             <th>用户名称</th>
             <th>密码</th>
-            <!-- <th>性别</th>
-            <th>电话</th>
-            <th>地址</th>
-            <th>身份证</th> -->
+    
             <th>权限</th>
-            <!-- <th>备注</th> -->      
+  
             <th>操作</th> 
         </thead>
         <tbody>
@@ -67,10 +59,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <td>
               <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
             </td>
-            <td>
+            <td id="id">
     	     <s:property value="#s.id"/>
     	    </td>
-    	    <td>
+    	    <td id = "username">
     	     <s:property value="#s.username"/>
     	    </td>
     	    <td>
@@ -84,10 +76,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            
             <td class="td-manage">
              
-              <a title="修改"  onclick="x_admin_show('修改','user-edit.jsp')" href="javascript:;">
+              <a title="修改"  onclick="x_admin_show('修改','user-edit.jsp?id=${s.id}& username=${s.username} ')" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
-              <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+              <a title="删除" onclick="member_del(this,${s.id})" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
@@ -96,16 +88,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             
         </tbody>
       </table>
-      <div class="page">
-        <div>
-          <a class="prev" href="">&lt;&lt;</a>
-          <a class="num" href="">1</a>
-          <span class="current">2</span>
-          <a class="num" href="">3</a>
-          <a class="num" href="">489</a>
-          <a class="next" href="">&gt;&gt;</a>
-        </div>
-      </div>
+      
+      
+      <s:if test="#request.pb!=null">
+   				<center>
+				<page:page pager="${pb}" />
+				</center>
+		</s:if>
 
     </div>
     <script>
@@ -123,36 +112,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         });
       });
 
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
-
-              if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-              }
-              
-          });
-      }
-
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-              //发异步删除数据
+          	  window.location.href = "deleteUser.action?user.id=" + id;
               $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+              layer.msg("删除成功",{icon:1,time:1000});
           });
       }
 
@@ -163,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var data = tableCheck.getData();
   
         layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
+            
             layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });

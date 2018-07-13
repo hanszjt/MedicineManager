@@ -98,5 +98,41 @@ public class UserDaoImpl implements UserDao {
 		return false;
 	}
 
+	@Override
+	public void deleteUserById(int id) {
+		User u = new User();
+		u.setId(id);
+		Session session = HibernateUtils.getSession();
+		session.getTransaction().begin();
+		session.delete(u);
+		System.out.println("数据库删除操作");
+		session.getTransaction().commit();
+
+	}
+
+	@Override
+	public User queryUserById(int id) {
+		Session session = HibernateUtils.getSession();
+		session.getTransaction().begin();
+		User user = (User) session.get(User.class, id);
+		System.out.println("数据库查询操作");
+		session.getTransaction().commit();
+		return user;
+	}
+
+	@Override
+	public List<User> queryUserByName(String name) {
+
+		Session session = HibernateUtils.getSession();
+		session.getTransaction().begin();
+		String sql = "from User where username =?";
+		Query query = session.createQuery(sql);
+		query.setString(0, name);
+		List<User> list = query.list();
+		System.out.println("数据库chaxun操作");
+		session.getTransaction().commit();
+		return list;
+	}
+
 	
 }

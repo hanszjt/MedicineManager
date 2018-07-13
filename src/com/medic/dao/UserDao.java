@@ -31,6 +31,8 @@ public interface UserDao {
 	 * @return
 	 */
 	public List<User> queryAllUser(Pager pager);
+	public User queryUserById(int id);
+	public List<User> queryUserByName(String name);
 	/**
 	 * 注册用户
 	 * @return
@@ -42,6 +44,7 @@ public interface UserDao {
 	 * @return
 	 */
 	public boolean deleteUser(String username);
+	public void deleteUserById(int id);
 	
 	/**
 	 * 修改用户
