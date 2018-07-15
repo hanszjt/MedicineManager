@@ -9,22 +9,29 @@ public class Sale {
 		this.id = id;
 	}
 	private String sid;
-	private int mid;
+	private Integer mid;
 	private String mname;
-	private int count;
-	private double saleprice;
+	private Integer count;
+	private Double saleprice;
 	
 	
+	public Double getSaleprice() {
+		return saleprice;
+	}
+	public void setSaleprice(Double saleprice) {
+		this.saleprice = saleprice;
+	}
 	public String getSid() {
 		return sid;
 	}
 	public void setSid(String sid) {
 		this.sid = sid;
 	}
-	public int getMid() {
+	
+	public Integer getMid() {
 		return mid;
 	}
-	public void setMid(int mid) {
+	public void setMid(Integer mid) {
 		this.mid = mid;
 	}
 	public String getMname() {
@@ -33,18 +40,14 @@ public class Sale {
 	public void setMname(String mname) {
 		this.mname = mname;
 	}
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
-	public double getSaleprice() {
-		return saleprice;
-	}
-	public void setSaleprice(double saleprice) {
-		this.saleprice = saleprice;
-	}
+	
+	
 	
 	
 	

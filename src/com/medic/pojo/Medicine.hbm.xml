@@ -13,10 +13,11 @@
     		<property name="mformat" column="mformat"  type="string"/>
     		<property name="maddress" column="maddress" type="string"/>
     		<property name="mnumber" column="munmber" type="string"/>
-    		<property name="inprice" column="inprice" type="double" />
+    		<property name="inprice" column="inprice" type="double"/>
     		<property name="saleprice" column="saleprice" type="double"/>
-    		<property name="someprice" column="someprice" type="double"/>
+    		<property name="someprice" column="someprice" type="double"  />
     		<property name="category" column="category" type="string"/>
+    		<property name="safedate" column="safedate" type="date"/>
 
     	</class>
     </hibernate-mapping>

@@ -10,6 +10,8 @@ public interface SaleDao {
 	
 	public void deleteSale(int id);
 	
+	public Long getCountSale();
+	
 	public void updateSale(Sale sale ,int id);
 	
 	public List<Sale> queryAllSale(Pager pager);

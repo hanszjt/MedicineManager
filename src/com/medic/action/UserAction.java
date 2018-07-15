@@ -42,13 +42,13 @@ public class UserAction extends ActionSupport{
 		String returnValue = "login";
 		if (validateCode.equalsIgnoreCase(code)) {
 			User checkUser = this.userDao.checkUserLogin(this.getUser().getUsername(), this.getUser().getPassword());
-			
+			System.out.println(checkUser.getPermission() + "111111111111111111");
 			if (checkUser != null) {
 				switch (checkUser.getPermission()) {
-				case 1:
+				case 0:
 					returnValue = "supermanager";
 					break;
-				case 0:
+				case 1:
 					returnValue = "salemanager";
 					break;
 				case 2:
@@ -84,7 +84,7 @@ public class UserAction extends ActionSupport{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		totalRows = userDao.getCountUser();
 		pager = PagerHelper.getPager(request, (int)totalRows, pageSize);
-		pager.setLinkUrl("listAllStudentPage.action"); // 设置跳转路径，也可以是？&
+		pager.setLinkUrl("listAllPage.action"); // 设置跳转路径，也可以是？&
 		request.setAttribute("total", totalRows);
 		request.setAttribute("pb", pager); // 将分页信息保存在Request对象pb中
 		List<User> studentList = userDao.queryAllUser(pager);
@@ -110,7 +110,7 @@ public class UserAction extends ActionSupport{
 		return SUCCESS;
 	}
 	
-	public String fingUser(){
+	public String findUser(){
 		HttpServletRequest request = ServletActionContext.getRequest();
 		List<User> queryUserByName = userDao.queryUserByName(this.user.getUsername());
 		request.setAttribute("userList", queryUserByName);

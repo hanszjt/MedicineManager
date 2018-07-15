@@ -5,11 +5,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="page" uri="/WEB-INF/mytld/pagetag.tld"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-   	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>欢迎页面-X-admin2.0</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -21,69 +20,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
+
   </head>
   
   <body>
+    <xblock>
     
-      <div class="x-nav">
-      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
-    </div>
-      <xblock>
         <span class="x-right" style="line-height:40px">共有数据：<%=request.getAttribute("total") %> 条</span>
       </xblock>
       <table class="layui-table">
         <thead>
           <tr>
             
-            <th>ID</th>
-            <th>用户名</th>
-            <th>拥有权限</th>
-            <th>操作</th>
+            <th>药品编号</th>
+            <th>药品名称</th>
+            <th>规格</th>
+            <th>药品产地</th>
+            <th>批号</th>
+            <th>进价</th>
+            <th>售价</th>
+            <th>批发价</th>
+            <th>类别</th>
+            <th>有效期</th>
+         
+            </tr>
         </thead>
         <tbody>
-
-        <s:iterator value="#request.userList" id="s" status="st">
-       	<tr>
+          <s:iterator value="#request.medicineByName" id="m" status="st">
+        <tr>
             
             <td id="id">
-    	     <s:property value="#s.id"/>
+    	     <s:property value="#m.id"/>
     	    </td>
-    	    <td id = "username">
-    	     <s:property value="#s.username"/>
+    	    <td id = "mname">
+    	     <s:property value="#m.mname"/>
+    	    </td>
+    	    <td id = "mfromat">
+    	     <s:property value="#m.mformat"/>
     	    </td>
     	     
-    	    <td>
-    	   	 <c:if test="${s.permission == 0 }">
-    	     	超级管理员
-    	     </c:if>
-    	     <c:if test="${s.permission == 1 }">
-    	     	仓库管理员
-    	     </c:if>
-    	     <c:if test="${s.permission == 2 }">
-    	     	销售员
-    	     </c:if>
-    	    </td>           
-    	     <td class="td-manage">
-              <a title="编辑"  onclick="x_admin_show('编辑','role-add.jsp?username=${s.username}')" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
-            </td>
-          </tr>
-          </s:iterator>
+    	    <td id ="maddress">
+    	     <s:property value="#m.maddress"/>
+    	    </td>
+    	   
+    	   <td id = "mnumber">
+    	     <s:property value="#m.mnumber"/>
+    	    </td>
+    	    <td id = "inprice">
+    	     <s:property value="#m.inprice"/>
+    	    </td>
+    	    <td id = "saleprice">
+    	     <s:property value="#m.saleprice"/>
+    	    </td>
+    	    <td id = "someprice">
+    	     <s:property value="#m.someprice"/>
+    	    </td>
+    	    <td id = "category">
+    	     <s:property value="#m.category"/>
+    	    </td>
+    	    <td id = "safedate">
+    	     <s:property value="#m.safedate"/>
+    	    </td>
+           
+            
+            </tr>
+           </s:iterator>
         </tbody>
       </table>
-       
+
       <s:if test="#request.pb!=null">
    				<center>
-				<page:page pager="${pb}" />
+   				
+					<page:page pager="${pb}" />
+				
 				</center>
-	  </s:if>
+		</s:if>
 
 
     </div>
-    
-
     
   </body>
 </html>

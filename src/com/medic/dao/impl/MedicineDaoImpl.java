@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import com.medic.dao.MedicineDao;
 import com.medic.page.Pager;
 import com.medic.pojo.Medicine;
+import com.medic.pojo.User;
 import com.medic.util.HibernateUtils;
 
 public class MedicineDaoImpl implements MedicineDao {
@@ -67,6 +68,31 @@ public class MedicineDaoImpl implements MedicineDao {
 		session.beginTransaction();
 		Medicine medicine = (Medicine) session.get(Medicine.class, id);
 		return medicine;
+	}
+
+	@Override
+	public Long getCountMedicine() {
+		Session session = HibernateUtils.getSession();
+		session.beginTransaction();
+		String hql = "select count(*) from Medicine";
+		Long count = (Long) session.createQuery(hql)
+				.iterate().next();
+		session.getTransaction().commit();
+		return count;
+
+	}
+
+	@Override
+	public List<Medicine> queryMedicineByName(String name) {
+		Session session = HibernateUtils.getSession();
+		session.getTransaction().begin();
+		String sql = "from Medicine where mname =?";
+		Query query = session.createQuery(sql);
+		query.setString(0, name);
+		List<Medicine> list = query.list();
+		System.out.println("Êý¾Ý¿âchaxun²Ù×÷");
+		session.getTransaction().commit();
+		return list;
 	}
 
 }

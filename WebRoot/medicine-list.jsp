@@ -24,90 +24,117 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    
-    <div class="x-nav">
+  <div class="x-nav">
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
-    <div class="x-body">
-      
-      <xblock>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./useradd.jsp')"><i class="layui-icon"></i>添加</button>
+    <xblock>
+    
+        
+        <button class="layui-btn" onclick="x_admin_show('添加用户','./medicine-add.jsp')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<%=request.getAttribute("total") %> 条</span>
       </xblock>
-      
-      
       <table class="layui-table">
         <thead>
           <tr>
             
-            <th>用户编号</th>
-            <th>用户名称</th>
-            <th>密码</th>
-    
-            <th>权限</th>
-  
-            <th>操作</th> 
+            <th>药品编号</th>
+            <th>药品名称</th>
+            <th>规格</th>
+            <th>药品产地</th>
+            <th>批号</th>
+            <th>进价</th>
+            <th>售价</th>
+            <th>批发价</th>
+            <th>类别</th>
+            <th>有效期</th>
+            <th >操作</th>
+            </tr>
         </thead>
         <tbody>
-        
-        <s:iterator value="#request.userList" id="s" status="st">
+          <s:iterator value="#request.MedicineList" id="m" status="st">
         <tr>
             
             <td id="id">
-    	     <s:property value="#s.id"/>
+    	     <s:property value="#m.id"/>
     	    </td>
-    	    <td id = "username">
-    	     <s:property value="#s.username"/>
+    	    <td id = "mname">
+    	     <s:property value="#m.mname"/>
     	    </td>
-    	    <td>
-    	     <s:property value="#s.password"/>
+    	    <td id = "mfromat">
+    	     <s:property value="#m.mformat"/>
     	    </td>
     	     
-    	    <td>
-    	     <s:property value="#s.permission"/>
+    	    <td id ="maddress">
+    	     <s:property value="#m.maddress"/>
     	    </td>
     	   
+    	   <td id = "mnumber">
+    	     <s:property value="#m.mnumber"/>
+    	    </td>
+    	    <td id = "inprice">
+    	     <s:property value="#m.inprice"/>
+    	    </td>
+    	    <td id = "saleprice">
+    	     <s:property value="#m.saleprice"/>
+    	    </td>
+    	    <td id = "someprice">
+    	     <s:property value="#m.someprice"/>
+    	    </td>
+    	    <td id = "category">
+    	     <s:property value="#m.category"/>
+    	    </td>
+    	    <td id = "safedate">
+    	     <s:property value="#m.safedate"/>
+    	    </td>
            
             <td class="td-manage">
              
-              <a title="修改"  onclick="x_admin_show('修改','user-edit.jsp?id=${s.id}&username=${s.username}')" href="javascript:;">
+              <a title="修改"  onclick="x_admin_show('修改','Medicine-edit.jsp?id=${m.id}&username=${m.mname}&fromat=${m.mformat}&maddress=${m.maddress}&mnumber=${m.mnumber}&inprice=${m.inprice}&saleprice=${m.saleprice}&someprice=${m.someprice}&category=${m.category}&safedate=${m.safedate} --%>')" href="javascript:;">
                 <i class="layui-icon">&#xe642;</i>
               </a>
-              <a title="删除" onclick="member_del(this,${s.id})" href="javascript:;">
+              <a title="删除" onclick="member_del(this,${m.id})" href="javascript:;">
                 <i class="layui-icon">&#xe640;</i>
               </a>
             </td>
             </tr>
            </s:iterator>
-            
         </tbody>
       </table>
-      
-      
+
       <s:if test="#request.pb!=null">
    				<center>
-				<page:page pager="${pb}" />
+   				
+					<page:page pager="${pb}" />
+				
 				</center>
 		</s:if>
 
-    </div>
-    <script>
-      
 
+    </div>
+    <script> 
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-          	  window.location.href = "deleteUser.action?user.id=" + id;
+              //发异步删除数据
+              window.location.href = "deleteMedicine.action?medicine.id="+id;
               $(obj).parents("tr").remove();
-              layer.msg("删除成功",{icon:1,time:1000});
+              layer.msg('已删除!',{icon:1,time:1000});
           });
       }
 
 
 
-      
+      function delAll (argument) {
+
+        var data = tableCheck.getData();
+  
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            layer.msg('删除成功', {icon: 1});
+            $(".layui-form-checked").not('.header').parents('tr').remove();
+        });
+      }
     </script>
-    
   </body>
 </html>

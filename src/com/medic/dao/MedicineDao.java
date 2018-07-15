@@ -13,6 +13,8 @@ import com.medic.pojo.Medicine;
 public interface MedicineDao {
 	public void addMedicine(Medicine medicine);
 	
+	public Long getCountMedicine();
+	
 	public void deleteMedicine(int id);
 	
 	public void updateMedicine(Medicine medicine,int id);
@@ -20,4 +22,6 @@ public interface MedicineDao {
 	public List<Medicine> queryAllMedicine(Pager pager);
 	
 	public Medicine queryMedicineByID(int id);
+	
+	public List<Medicine> queryMedicineByName(String name);
 }

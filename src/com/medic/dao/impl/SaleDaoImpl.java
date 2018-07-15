@@ -66,4 +66,15 @@ public class SaleDaoImpl implements SaleDao {
 		return sale;
 	}
 
+	@Override
+	public Long getCountSale() {
+		Session session = HibernateUtils.getSession();
+		session.beginTransaction();
+		String hql = "select count(*) from Sale";
+		Long count = (Long) session.createQuery(hql)
+				.iterate().next();
+		session.getTransaction().commit();
+		return count;
+	}
+
 }

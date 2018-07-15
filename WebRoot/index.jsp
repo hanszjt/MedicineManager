@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </a>
                     </li >
                     <li>
-                        <a _href="admin-cate.html">
+                        <a _href="user-cate.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>权限分类</cite>
                         </a>
@@ -95,13 +95,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="medicinelist.action">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>药品列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="stocklist.action">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>进货管理</cite>
                         </a>
@@ -123,14 +123,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </a>
                     </li >
                     <li>
-                        <a _href="cate.html">
+                        <a _href="stocklist2.action">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>药品查询</cite>
                         </a>
                     </li>
                    
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="salelist.action">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>药品销售记录</cite>
                         </a>
@@ -165,7 +165,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='./welcome.jsp' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>

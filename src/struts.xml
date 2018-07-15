@@ -44,4 +44,46 @@
 		</action>
 		
 	</package>
+	
+	<package name="p2" extends="struts-default"> 
+	<!-- 药品列表 -->
+		<action name="medicinelist" class="com.medic.action.MedicineAction" method="medicinelist">
+			<result name ="success">/medicine-list.jsp</result>
+		</action>
+	<!-- 药品删除 -->
+		<action name="deleteMedicine" class="com.medic.action.MedicineAction" method = "deleteMedicine">
+			<result name = "success" type="redirectAction">medicinelist</result>
+		</action>
+	<!-- 药品添加 -->
+		<action name="medicineadd" class="com.medic.action.MedicineAction" method="addMedicine">
+		</action>
+		
+		
+	<!-- 仓库列表 -->
+		<action name="stocklist" class="com.medic.action.StockAction" method="stocklist">
+			<result name="success">/stock-list.jsp</result>
+		</action>
+		<action name="updatestock" class="com.medic.action.StockAction" method="updatestock">
+			<result name="success">/success.jsp</result>
+		</action>
+		<action name="querymedicinename" class="com.medic.action.StockAction" method="querymedicinename">
+			<result name= "success">/stock-add.jsp</result>
+		</action>
+		<action name="addstock" class="com.medic.action.StockAction" method="addstock">			
+		</action>
+		
+	<!-- 销售 -->
+		<action name="stocklist2" class="com.medic.action.SaleAction" method="stocklist">
+			<result name="success">/salemedicine-list.jsp</result>
+		</action>
+		<action name="medicinelist2" class="com.medic.action.SaleAction" method="searcMedicine">
+			<result name ="success">/showmedicine.jsp</result>
+		</action>
+		<action name="salelist" class="com.medic.action.SaleAction" method="salelist">
+			<result name="success">/order-list.jsp</result>
+		</action>
+		<action name="deleteSale" class="com.medic.action.SaleAction" method="deletesale">
+			<result name="success" type="redirectAction">salelist</result>
+		</action>
+	</package>
 </struts>

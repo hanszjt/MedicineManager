@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>欢迎页面-X-admin2.0</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,43 +20,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
 
+
   </head>
-  
+   <%
+  	String sid = request.getParameter("id");
+  	String mname = request.getParameter("mname");
+  	String count = request.getParameter("count");
+   %>
   <body>
     <div class="x-body">
-        <form class="layui-form" action="useradd.action" method="post">
+        <form class="layui-form" action="updatestock.action" method="post">
           <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
-                  <span class="x-red">*</span>用户名
+              <label for="sid" class="layui-form-label">
+                  <span class="x-red">*</span>仓库编号
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="username" name="user.username"  class="layui-input">
+                  <input type="text" id="sid" name="stock.sid" value=<%=sid %> readonly="readonly" class="layui-input">
               </div>
-              <div class="layui-form-mid layui-word-aux">
-                  <span class="x-red">*</span>将会成为您唯一的登入名
-              </div>
+              
           </div>
           
           
           <div class="layui-form-item">
-              <label for="L_pass" class="layui-form-label">
-                  <span class="x-red">*</span>密码
+              <label for="mname" class="layui-form-label">
+                  <span class="x-red">*</span>药品名称
               </label>
               <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="user.password" required="" lay-verify="pass"
-                  autocomplete="off" class="layui-input"/>
+                  <input type="text" id="mname" name="stock.mname" value=<%=mname %> readonly="readonly" class="layui-input"/>
               </div>
-              <div class="layui-form-mid layui-word-aux">
-                  6到16个字符
-              </div>
+              
           </div>
           <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">
-                  <span class="x-red">*</span>确认密码
+                  <span class="x-red">*</span>进货数量
               </label>
               <div class="layui-input-inline">
-                  <input type="password" id="L_repass" required="" lay-verify="repass"
-                  autocomplete="off" class="layui-input"/>
+                  <input type="text" id="count" name="stock.count" value=<%=count %>  class="layui-input"/>
               </div>
           </div>
           <div class="layui-form-item">
@@ -92,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           //监听提交
           form.on('submit(add)', function(data){
             console.log(data);
-            window.location.href = "useradd.action";
+            window.location.href = "updatestock.action";
             //发异步，把数据提交给php
             layer.alert("增加成功", {icon: 6},function () {
                 // 获得frame索引

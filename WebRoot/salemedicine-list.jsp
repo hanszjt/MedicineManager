@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-   	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>欢迎页面-X-admin2.0</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -21,69 +21,58 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-  </head>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
   
   <body>
-    
-      <div class="x-nav">
+  <div class="x-nav">
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
-      <xblock>
-        <span class="x-right" style="line-height:40px">共有数据：<%=request.getAttribute("total") %> 条</span>
+   	 <xblock>
+        
+        <span class="x-left" style="line-height:40px">共有数据：<%=request.getAttribute("total") %> 条</span>
       </xblock>
       <table class="layui-table">
         <thead>
           <tr>
             
-            <th>ID</th>
-            <th>用户名</th>
-            <th>拥有权限</th>
-            <th>操作</th>
+
+            <th>药品名称</th>
+            <th>库存数量</th>
+            <th>药品详细信息</th>
+            
+            </tr>
         </thead>
         <tbody>
-
-        <s:iterator value="#request.userList" id="s" status="st">
-       	<tr>
+        <s:iterator value="#request.stockList" id="st" >
+          <tr>
             
-            <td id="id">
-    	     <s:property value="#s.id"/>
+            
+    	    <td id = "mname">
+    	     <s:property value="#st.mname"/>
     	    </td>
-    	    <td id = "username">
-    	     <s:property value="#s.username"/>
+    	    <td id = "count">
+    	     <s:property value="#st.count"/>
     	    </td>
-    	     
-    	    <td>
-    	   	 <c:if test="${s.permission == 0 }">
-    	     	超级管理员
-    	     </c:if>
-    	     <c:if test="${s.permission == 1 }">
-    	     	仓库管理员
-    	     </c:if>
-    	     <c:if test="${s.permission == 2 }">
-    	     	销售员
-    	     </c:if>
-    	    </td>           
-    	     <td class="td-manage">
-              <a title="编辑"  onclick="x_admin_show('编辑','role-add.jsp?username=${s.username}')" href="javascript:;">
-                <i class="layui-icon">&#xe642;</i>
-              </a>
+            
+            <td class="td-manage">
+            
+               <button  class="layui-btn" lay-filter="add" onclick="x_admin_show('详细信息','medicinelist2.action?mname=${st.mname}')">
+                  	查看详细信息
+               </button>
             </td>
           </tr>
           </s:iterator>
         </tbody>
       </table>
-       
       <s:if test="#request.pb!=null">
    				<center>
-				<page:page pager="${pb}" />
+   				
+					<page:page pager="${pb}" />
+				
 				</center>
-	  </s:if>
+		</s:if>
 
-
-    </div>
-    
-
-    
+  
   </body>
 </html>

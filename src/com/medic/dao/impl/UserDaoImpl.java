@@ -67,6 +67,7 @@ public class UserDaoImpl implements UserDao {
 		List list = query.list();
 		User u = null;
 		u = (User) list.get(0);
+		System.out.println(u.getUsername());
 		System.out.println("数据库登陆验证操作");
 		return u;
 	}

@@ -25,6 +25,8 @@
 	<mapping resource="com/medic/pojo/User.hbm.xml" />
 	<mapping resource="com/medic/pojo/Employee.hbm.xml" />
 	<mapping resource="com/medic/pojo/Medicine.hbm.xml" />
+	<mapping resource="com/medic/pojo/Stock.hbm.xml"/>
+	<mapping resource="com/medic/pojo/Sale.hbm.xml"/>
 
 
 </session-factory>

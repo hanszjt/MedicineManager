@@ -13,11 +13,13 @@ import com.medic.pojo.Stock;
 public interface StockDao {
 	public void addMedicine(Stock stock);
 	
-	public void deleteMedicine(int mid);
+	public void deleteMedicine(int sid);
 	
-	public void updateStock(Stock stock , int mid);
+	public void updateStock(Stock stock , int sid);
 	
 	public List<Stock> queryAllStock(Pager pager);
+	
+	public Long getCountStock();
 
-	public Stock queryStock(int mid);
+	public Stock queryStock(int sid);
 }

@@ -1,5 +1,7 @@
 package com.medic.pojo;
 
+import java.util.Date;
+
 /**
  * 药品实体类
  * @author 张金倓
@@ -11,12 +13,39 @@ public class Medicine {
 	private String mformat;//规格
 	private String maddress;//药品产地
 	private String mnumber;//批号
-	private double inprice;//进价
-	private double saleprice;//售价
-	private double someprice;//批发价
+	private Double inprice;//进价
+	private Double saleprice;//售价
+	private Double someprice;//批发价
+	public Double getInprice() {
+		return inprice;
+	}
+	public void setInprice(Double inprice) {
+		this.inprice = inprice;
+	}
+	public Double getSaleprice() {
+		return saleprice;
+	}
+	public void setSaleprice(Double saleprice) {
+		this.saleprice = saleprice;
+	}
+	public Double getSomeprice() {
+		return someprice;
+	}
+	public void setSomeprice(Double someprice) {
+		this.someprice = someprice;
+	}
 	private String category;//类别
+	private Date safedate;//保质期
 	
 	
+	
+
+	public Date getSafedate() {
+		return safedate;
+	}
+	public void setSafedate(Date safedate) {
+		this.safedate = safedate;
+	}
 	public int getId() {
 		return id;
 	}
@@ -47,24 +76,8 @@ public class Medicine {
 	public void setMnumber(String mnumber) {
 		this.mnumber = mnumber;
 	}
-	public double getInprice() {
-		return inprice;
-	}
-	public void setInprice(double inprice) {
-		this.inprice = inprice;
-	}
-	public double getSaleprice() {
-		return saleprice;
-	}
-	public void setSaleprice(double saleprice) {
-		this.saleprice = saleprice;
-	}
-	public double getSomeprice() {
-		return someprice;
-	}
-	public void setSomeprice(double someprice) {
-		this.someprice = someprice;
-	}
+	
+	
 	public String getCategory() {
 		return category;
 	}

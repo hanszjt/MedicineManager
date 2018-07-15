@@ -23,6 +23,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    This is my JSP page. <br>
+   <div class="x-body">
+      
+      <xblock>
+        
+        <span class="x-right" style="line-height:40px">共有数据：3 条</span>
+      </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            
+            <th>ID</th>
+            <th>分类名</th>
+            
+        </thead>
+        
+        <tbody>
+          <tr>
+           
+            <td>0</td>
+            <td>超级管理员</td>
+            
+          </tr>
+            <tr>
+           
+            <td>1</td>
+            <td>仓库管理员</td>
+            
+          </tr>
+            <tr>
+           
+            <td>2</td>
+            <td>销售员</td>
+            
+          </tr>
+        </tbody>
+      </table>
+     
+
+    </div>
   </body>
 </html>

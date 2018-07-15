@@ -22,9 +22,9 @@ public class StockDaoImpl implements StockDao{
 	}
 
 	@Override
-	public void deleteMedicine(int mid) {
+	public void deleteMedicine(int sid) {
 		Stock stock = new Stock();
-		stock.setMid(mid);
+		stock.setSid(sid);
 		Session session = HibernateUtils.getSession();
 		session.beginTransaction();
 		session.delete(stock);
@@ -34,10 +34,10 @@ public class StockDaoImpl implements StockDao{
 	}
 
 	@Override
-	public void updateStock(Stock stock, int mid) {
+	public void updateStock(Stock stock, int sid) {
 		Session session = HibernateUtils.getSession();
 		session.beginTransaction();
-		Stock s = (Stock) session.get(Stock.class, mid);
+		Stock s = (Stock) session.get(Stock.class, sid);
 		s.setCount(stock.getCount());
 		s.setMname(stock.getMname());
 		session.update(s);
@@ -59,14 +59,25 @@ public class StockDaoImpl implements StockDao{
 	}
 
 	@Override
-	public Stock queryStock(int mid) {
+	public Stock queryStock(int sid) {
 		Session session = HibernateUtils.getSession();
 		session.beginTransaction();
-		Stock stock = (Stock) session.get(Stock.class, mid);
+		Stock stock = (Stock) session.get(Stock.class, sid);
 		
 		
 		
 		return stock;
+	}
+
+	@Override
+	public Long getCountStock() {
+		Session session = HibernateUtils.getSession();
+		session.beginTransaction();
+		String hql = "select count(*) from Stock";
+		Long count = (Long) session.createQuery(hql)
+				.iterate().next();
+		session.getTransaction().commit();
+		return count;
 	}
 
 }
