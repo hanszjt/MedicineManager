@@ -110,11 +110,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </div>
           </div>
           <div class="layui-form-item">
-              <label for="username" class="layui-form-label">
+              <label for="date" class="layui-form-label">
                   <span class="x-red">*</span>有效期
               </label>
               <div class="layui-input-inline">
-                  <input type="text" id="safedate" name="medicine.safedate"  lay-verify="date" class="layui-input">
+                  <input type="text" id="date" name="medicine.safedate"  lay-verify="date" class="layui-input">
               </div>
           </div>
           <div class="layui-form-item">
@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 return '昵称至少得5个字符啊';
               }
             }
-            ,date: [ /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/, '日期YYYY-MM-DD']
+            ,date:[ /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/, '日期YYYY-MM-DD']
             ,repass: function(value){
                 if($('#L_pass').val()!=$('#L_repass').val()){
                     return '两次密码不一致';

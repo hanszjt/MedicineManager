@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 
 import com.medic.pojo.Sale;
+import com.medic.service.MedicineService;
 import com.medic.service.SaleService;
 import com.medic.service.StockService;
+import com.medic.service.impl.MedicineServiceImpl;
 import com.medic.service.impl.SaleServiceImpl;
 import com.medic.service.impl.StockServiceImpl;
 import com.opensymphony.xwork2.ActionSupport;
@@ -59,5 +61,18 @@ public class SaleAction extends ActionSupport {
 		SaleService ss = new SaleServiceImpl();
 		ss.deletesale(this.sale);
 		return SUCCESS;
+	}
+	
+	public String querymedicine() {
+		HttpServletRequest request = ServletActionContext.getRequest();
+		StockService ms = new StockServiceImpl();
+		ms.getStockList(request);
+		return SUCCESS;
+	}
+	
+	public String addsale() {
+		SaleService ss = new SaleServiceImpl();
+		ss.addsale(this.sale);
+		return null;
 	}
 }

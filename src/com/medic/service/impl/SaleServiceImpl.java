@@ -46,5 +46,9 @@ public class SaleServiceImpl implements SaleService {
 	public void deletesale(Sale sale) {
 		sd.deleteSale(sale.getId());
 	}
+	@Override
+	public void addsale(Sale sale) {
+		sd.addSale(sale);
+	}
 
 }

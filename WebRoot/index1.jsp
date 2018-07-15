@@ -25,8 +25,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  
     <!-- 顶部开始 -->
+    
     <div class="container">
+    
         <div class="logo"><a href="./index.jsp">ManagerSystem v1.0</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
@@ -60,33 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="left-nav">
       <div id="side-nav">
         <ul id="nav">
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe726;</i>
-                    <cite>用户管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="listAllPage.action">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户列表</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="userRole.action">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="user-cate.jsp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限分类</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
+            
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
@@ -109,49 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </ul>
             </li>
             
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6ce;</i>
-                    <cite>药品销售管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="querymedicine.action">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>药品销售</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="stocklist2.action">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>药品查询</cite>
-                        </a>
-                    </li>
-                   
-                    <li>
-                        <a _href="salelist.action">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>药品销售记录</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b4;</i>
-                    <cite>图标字体</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="unicode.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>图标对应字体</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            
         </ul>
       </div>
     </div>
@@ -178,6 +113,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="copyright">Copyright ©2017 x-admin 2.3 All Rights Reserved  更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></div>  
     </div>
     <!-- 底部结束 -->
-
   </body>
 </html>

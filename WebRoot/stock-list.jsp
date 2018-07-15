@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
    <xblock>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','querymedicinename.action')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加库存','querymedicinename.action')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：<%=request.getAttribute("total") %> 条</span>
       </xblock>
       <table class="layui-table">

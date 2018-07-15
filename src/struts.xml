@@ -8,8 +8,8 @@
 	<!-- 用户登陆 -->
 		<action name="userlogin" class="com.medic.action.UserAction" method="login">
 			<result name="supermanager">/index.jsp</result>
-			<result name="salemanager">/index.jsp</result>
-			<result name="goodsmanager">/index.jsp</result>
+			<result name="salemanager">/index2.jsp</result>
+			<result name="goodsmanager">/index1.jsp</result>
 		</action>
 	<!-- 用户注册 -->
 		<action name="userRegist" class="com.medic.action.UserAction" method="regist">
@@ -84,6 +84,12 @@
 		</action>
 		<action name="deleteSale" class="com.medic.action.SaleAction" method="deletesale">
 			<result name="success" type="redirectAction">salelist</result>
+		</action>
+		<action name="querymedicine" class="com.medic.action.SaleAction" method="querymedicine">
+			<result name="success">/order-add.jsp</result>
+		</action>
+		<action name="addsale" class="com.medic.action.SaleAction" method="addsale">
+			
 		</action>
 	</package>
 </struts>
